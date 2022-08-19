@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RedirectionController;
 use App\Http\Controllers\KlaviyoController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\CarsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +31,19 @@ Route::get('/posts/{id}',[PostController::class,'getPostById']);
 Route::get('/posts-delete/{id}',[PostController::class,'deletePost']);
 
 
+// For Database Relationships 
+Route::get('/cars',[CarsController::class,'getCars'])->name('cars.index');
+Route::get('/cars/{id}',[CarsController::class,'getCarsById']);
+
+
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/',[RedirectionController::class,'redirection'])->name('redirection');
+
+Route::get('/klaviyo',[KlaviyoController::class,'klaviyoSms']);
+
+// Route::view('/about','pages.about');
+
+Route::get('/{pages}', PagesController::class)->name('pages')->where('pages','about|contact|terms');

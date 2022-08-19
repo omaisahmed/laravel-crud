@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->integer('roles');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        if(!Schema::hasTable('engines')){
+        Schema::create('engines', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('model_id');
+            $table->string('engine_name');
+            $table->foreign('model_id')->references('id')->on('car_models')->onDelete('cascade');
             $table->timestamps();
         });
     }
-
+    }
     /**
      * Reverse the migrations.
      *
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('engines');
     }
 };
