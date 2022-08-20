@@ -66,6 +66,17 @@ class PostController extends Controller
         Post::find($id)->delete();
         return back()->with('post_deleted','Post Deleted Successfully!');
     }
+
+    // public function searchIndex(){
+    //     return view('search-index');
+    // }
+    public function searchPost(Request $request, Post $post){
+        if ($request->has('title')) {
+            $search = Post::where('title', $request->input('title'))->get();
+            return view('search-index',compact('search'));
+        }
+        
+    }
 }
 
     

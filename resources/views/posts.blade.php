@@ -23,12 +23,14 @@
                 <a type="button" href="{{route('add-post')}}" class="btn btn-primary px-4 btn-lg my-auto">Add Post</a>
                 </div>
 
-
+              <form action="{{route('search.filter')}}" method="post">
+                @csrf
                 <div class="col-lg-6 my-auto justify-content-center">
                         <div class="mx-auto pull-right">
-                            <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Search...">
+                            <input type="text" class="form-control col-md-4 float-left" name="title" id="title" placeholder="Search...">
                         </div>            
                 </div>
+               </form>
 
                 <div class="col-lg-12 justify-content-center">
                     <table class="table table-bordered table-striped">
@@ -50,7 +52,7 @@
                              @foreach($posts as $post)
                          <tr>
                             <td>{{$post->id}}</td>
-                            <td>{{$post->user->name}}</td>
+                            <td>Name</td>
                             <td>{{$post->title}}</td>
                             <td>{{Str::limit($post->body, 20, '...')}}</td>
                             <td>

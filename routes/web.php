@@ -30,6 +30,8 @@ Route::get('/posts',[PostController::class,'getPost'])->name('posts.index');
 Route::get('/posts/{id}',[PostController::class,'getPostById']);
 Route::get('/posts-delete/{id}',[PostController::class,'deletePost']);
 
+Route::get('/search',[PostController::class,'searchIndex']);
+Route::post('/search-post',[PostController::class,'searchPost'])->name('search.filter');
 
 // For Database Relationships 
 Route::get('/cars',[CarsController::class,'getCars'])->name('cars.index');
