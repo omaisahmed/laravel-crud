@@ -27,6 +27,7 @@
                     @endif
                     <form method="post" action="{{route('create-post')}}">
                         @csrf
+                        {!! Honeypot::generate('my_name', 'my_time') !!}
                     <table class="table table-bordered table-striped">
                         @if(Session::has('post_created'))
                          <div class="alert alert-success" role="alert">
@@ -37,12 +38,14 @@
                          <tr>
                              <td>Post Title</td>
                              <td>Post Description</td>
+                             <td>Email</td>
                          </tr>
                          </thead>
                          <tbody>
                          <tr>
                             <td><input type="text" name="title"  /></td>
                             <td ><input type="text" name="body"  /></td>
+                            <td ><input type="email" name="email"  /></td>
                             <td><input type="submit" class="btn btn-primary" value="Add Post"></td>
                         </tr>
                          </tbody>

@@ -24,24 +24,27 @@
                          <tr>
                              <td>ID</td>
                              <td>Post Title</td>
+                             <td>Post Body</td>
                          </tr>
                          </thead>
                          <tbody>
-                             @foreach($search as $filter)
+                    
+                             @forelse($search as $filter)
                          <tr>
                             <td>{{$filter->id}}</td>
                             <td>{{$filter->title}}</td>
+                            <td>{{$filter->body}}</td>
                         </tr>
-                        @endforeach
-                         </tbody>
-                        
-                     </table>
-
-                   
-    
+                        @empty
+                        <tr>
+                            <td colspan="3">No Record Found</td>
+                        </tr>
+                            
+                        @endforelse
+                         </tbody>   
+                     </table>  
             </div>
    
-
         </div>
         </div>
      

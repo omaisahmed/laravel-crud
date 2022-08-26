@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use EloquentBuilder;
+
 
 class PostController extends Controller
 {
@@ -24,6 +26,7 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->email = $request->email;
         $post->save();
         return back()->with('post_created','Post has been created Successfully!');
     }
@@ -67,15 +70,28 @@ class PostController extends Controller
         return back()->with('post_deleted','Post Deleted Successfully!');
     }
 
-    // public function searchIndex(){
-    //     return view('search-index');
-    // }
+  
     public function searchPost(Request $request, Post $post){
-        if ($request->has('title')) {
-            $search = Post::where('title', $request->input('title'))->get();
-            return view('search-index',compact('search'));
+
+        $search = Post::query();
+        $title = $request->title;
+        $body = $request->body;
+
+        if ($title) {
+             $search->where('title','LIKE','%'.$title.'%');
         }
-        
+        if ($body) {
+            $search->where('body','LIKE','%'.$body.'%');
+       }
+
+       $data = [
+        'title' => $title,
+        'body' => $body,
+        'search' => $search->latest()->simplePaginate(20),
+    ];
+
+        return view('search-index',$data);
+ 
     }
 }
 
