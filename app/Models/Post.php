@@ -9,7 +9,12 @@ use App\Models\User;
 class Post extends Model
 {
     use HasFactory;
-    protected $table="posts";
+    // protected $table="posts";
+
+    protected $fillable = [
+        'title',
+        'body'
+    ];
 
     public static function search($request)
 {

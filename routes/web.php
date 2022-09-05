@@ -7,6 +7,7 @@ use App\Http\Controllers\KlaviyoController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\EmailController;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
@@ -20,10 +21,7 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+// Laravel Crud
 Route::get('/add-post', [PostController::class, 'addPost'])->name('add-post');
 Route::post('create-post',[PostController::class,'createPost'])->name('create-post')->middleware(ProtectAgainstSpam::class);
 Route::get('/update-post/{id}',[PostController::class,'updatePost'])->name('update-post');
@@ -31,14 +29,17 @@ Route::post('post-updated/{id}',[PostController::class,'postUpdated'])->name('po
 Route::get('/posts',[PostController::class,'getPost'])->name('posts.index');
 Route::get('/posts/{id}',[PostController::class,'getPostById']);
 Route::get('/posts-delete/{id}',[PostController::class,'deletePost']);
+// Laravel Crud
 
+// Search Engine
 Route::get('/search',[PostController::class,'searchIndex']);
 Route::get('/search-post',[PostController::class,'searchPost'])->name('search.filter');
+// Search Engine
 
 // For Database Relationships 
 Route::get('/cars',[CarsController::class,'getCars'])->name('cars.index');
 Route::get('/cars/{id}',[CarsController::class,'getCarsById']);
-
+// For Database Relationships 
 
 Auth::routes();
 
@@ -48,15 +49,17 @@ Route::get('/',[RedirectionController::class,'redirection'])->name('redirection'
 
 Route::get('/klaviyo',[KlaviyoController::class,'klaviyoSms']);
 
-// Route::view('/about','pages.about');
 
+// Multiple Pages With One Controller
 Route::get('/{pages}', PagesController::class)->name('pages')->where('pages','about|contact|terms');
+// Multiple Pages With One Controller
 
-
+// Partners Directory
 Route::get('/partners', [PartnersController::class,'partners_directory'])->name('site.partners_directory');
 Route::get('/partners/{company_name}',[PartnersController::class,'partners_company'])->name('site.partners_company');
 Route::get('/partners/category/{tag_name1}',[PartnersController::class,'partners_category_tag1'])->name('site.partners_category_tag1');
 Route::get('/partners/category/{tag_name2}',[PartnersController::class,'partners_category_tag2'])->name('site.partners_category_tag2');
+// Partners Directory
 
 // Partners Dashboard
 Route::group(['prefix' => 'partner'], function () {
@@ -69,3 +72,15 @@ Route::group(['prefix' => 'partner'], function () {
 });
 // Partners Dashboard
 
+// Stripe Payment
+Route::get('checkout','App\Http\Controllers\CheckoutController@checkout');
+Route::post('checkout','App\Http\Controllers\CheckoutController@afterpayment')->name('checkout.credit-card');
+// Stripe Payment
+
+// Email Sent With Job Queues
+Route::get('/sendemail',[EmailController::class,'SendMail']);
+// Email Sent With Job Queues
+
+// Route::get('/check', function () {
+//    Artisan::call('schedule:run');
+// });
