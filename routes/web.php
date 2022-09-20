@@ -8,6 +8,8 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\NotificationController;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
@@ -77,10 +79,17 @@ Route::get('checkout','App\Http\Controllers\CheckoutController@checkout');
 Route::post('checkout','App\Http\Controllers\CheckoutController@afterpayment')->name('checkout.credit-card');
 // Stripe Payment
 
-// Email Sent With Job Queues
+// Email Sent Using Job Queues
 Route::get('/sendemail',[EmailController::class,'SendMail']);
-// Email Sent With Job Queues
+// Email Sent Using Job Queues
 
 // Route::get('/check', function () {
 //    Artisan::call('schedule:run');
 // });
+
+// Event Listener
+Route::get('/event',[EventController::class,'eventListener']);
+
+
+Route::get('/notification',[NotificationController::class,'order_shipped_notification']);
+  
