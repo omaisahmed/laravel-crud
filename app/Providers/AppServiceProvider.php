@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Str;
+use App\Mixins\StrMixin;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +27,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        // Str::macro('isLength', function ($str, $length) {
+        //     return static::length($str) == $length;
+        // });
+
+        Str::mixin(new StrMixin);
     }
 }

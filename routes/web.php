@@ -43,11 +43,11 @@ Route::get('/cars',[CarsController::class,'getCars'])->name('cars.index');
 Route::get('/cars/{id}',[CarsController::class,'getCarsById']);
 // For Database Relationships 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/macro', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/',[RedirectionController::class,'redirection'])->name('redirection');
+//Route::get('/',[RedirectionController::class,'redirection'])->name('redirection');
 
 Route::get('/klaviyo',[KlaviyoController::class,'klaviyoSms']);
 
@@ -92,4 +92,3 @@ Route::get('/event',[EventController::class,'eventListener']);
 
 
 Route::get('/notification',[NotificationController::class,'order_shipped_notification']);
-  
