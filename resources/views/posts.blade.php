@@ -50,7 +50,7 @@
                             <td>{{$post->title}}</td>
                             <td>{{Str::limit($post->body, 20, '...')}}</td>
                             <td>
-                                <a type="button" href="/posts/{{$post->id}}" class="btn btn-primary">Details</a>
+                                <a type="button" href="{{route('post.view',$post->id)}}" class="btn btn-primary">Details</a>
                                 <a type="button" href="/update-post/{{$post->id}}" class="btn btn-info">Update</a>
                                 <a type="button" href="/posts-delete/{{$post->id}}" class="btn btn-danger">Delete</a>
                             </td>

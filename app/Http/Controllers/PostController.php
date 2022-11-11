@@ -91,7 +91,7 @@ class PostController extends Controller
     ];
 
         return view('search-index',$data);
- 
+
     }
 }
 

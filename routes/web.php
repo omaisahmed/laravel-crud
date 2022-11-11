@@ -1,16 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RedirectionController;
-use App\Http\Controllers\KlaviyoController;
-use App\Http\Controllers\PagesController;
+use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Controllers\CarsController;
-use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\CloseIOController;
+use App\Http\Controllers\KlaviyoController;
+use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\RedirectionController;
 use App\Http\Controllers\NotificationController;
-use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::post('create-post',[PostController::class,'createPost'])->name('create-po
 Route::get('/update-post/{id}',[PostController::class,'updatePost'])->name('update-post');
 Route::post('post-updated/{id}',[PostController::class,'postUpdated'])->name('post.updated');
 Route::get('/posts',[PostController::class,'getPost'])->name('posts.index');
-Route::get('/posts/{id}',[PostController::class,'getPostById']);
+Route::get('/posts/{id}',[PostController::class,'getPostById'])->name('post.view');
 Route::get('/posts-delete/{id}',[PostController::class,'deletePost']);
 // Laravel Crud
 
@@ -92,3 +93,5 @@ Route::get('/event',[EventController::class,'eventListener']);
 
 
 Route::get('/notification',[NotificationController::class,'order_shipped_notification']);
+
+Route::get('/closeio',[CloseIOController::class, 'close_io']);

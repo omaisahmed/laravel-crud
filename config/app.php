@@ -184,6 +184,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Msurguy\Honeypot\HoneypotServiceProvider::class,
         
+        
 
         /*
          * Package Service Providers...
@@ -214,6 +215,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
-    'Honeypot' => 'Msurguy\Honeypot\HoneypotFacade'
+    'Honeypot' => 'Msurguy\Honeypot\HoneypotFacade',
 
 ];
