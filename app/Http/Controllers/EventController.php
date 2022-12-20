@@ -14,4 +14,9 @@ class EventController extends Controller
     echo $user->name ." Your Profile Checked!";
 
    }
+
+   public function statusLiked(){
+      event(new \App\Events\StatusLiked('Someone'));
+      return "Event has been sent!";
+     }
 }

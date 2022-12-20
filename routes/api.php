@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,5 @@ Route::post('/register', 'Auth\UserAuthController@register');
 Route::post('/login', 'Auth\UserAuthController@login');
 
 Route::apiResource('/employee', 'EmployeeController')->middleware('auth:api');
+
+Route::get('/post',[PostController::class,'getPost'])->name('post.index');

@@ -95,3 +95,9 @@ Route::get('/event',[EventController::class,'eventListener']);
 Route::get('/notification',[NotificationController::class,'order_shipped_notification']);
 
 Route::get('/closeio',[CloseIOController::class, 'close_io']);
+
+Route::get('/', function () {
+	return view('welcome');
+});
+Route::get('/notification',[EventController::class,'statusLiked']);
+
