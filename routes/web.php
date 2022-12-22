@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Controllers\CarsController;
@@ -44,7 +45,7 @@ Route::get('/cars',[CarsController::class,'getCars'])->name('cars.index');
 Route::get('/cars/{id}',[CarsController::class,'getCarsById']);
 // For Database Relationships 
 
-// Auth::routes();
+Auth::routes();
 
 Route::get('/macro', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -100,4 +101,9 @@ Route::get('/', function () {
 	return view('welcome');
 });
 Route::get('/notification',[EventController::class,'statusLiked']);
+
+// Route::fallback(function () {
+//    return view('welcome');
+// });
+
 
